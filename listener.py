@@ -18,12 +18,13 @@ def listenToTopic(topic):
         bootstrap_servers=["localhost:29092"],
         auto_offset_reset="earliest", #Start reading the log from earliest or latest upon restart
         enable_auto_commit=True, #Makes sure the consumer commits its read offset every interval
-        group_id="eventbus",
+        group_id="eventbus", #The group that consumes the message
         value_deserializer=lambda x: loads(x.decode("utf-8"))) #Deserializes the data into a common json format
 
     for message in consumer:
         message = message.value
         logging.info("martinkarlssonio/python-kafka-eventbus :: New event on topic {} : {}".format(topic,message))
+        #Take action here
 
 def startThreads():
     threads = list()
