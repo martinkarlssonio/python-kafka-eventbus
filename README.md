@@ -13,6 +13,7 @@
 ## About The Project
 
 Purpose for this tutorial is to show how to build a de-coupled, eventdriven, microservices architecture based on Kafka.
+
 ![Architecture overview][arch]
 
 ### Pre-requisite
