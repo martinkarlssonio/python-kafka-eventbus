@@ -1,3 +1,6 @@
+"""
+Starts the Kafka container and python listener.
+"""
 import os
 import logging
 format = "%(asctime)s: %(message)s"

@@ -1,5 +1,5 @@
 """
-
+This code will send some test-events to Kafka to test the e2e solution.
 """
 
 from time import sleep
