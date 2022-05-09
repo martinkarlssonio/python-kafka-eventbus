@@ -10,7 +10,7 @@ import listener
 
 if __name__ == "__main__":
     logging.info("martinkarlssonio/python-kafka-eventbus :: Starting Kafka containers..")
-    os.system("cd kafka-container && docker-compose up -d --no-recreate")
+    os.system("cd kafkaContainer && docker-compose up -d --no-recreate")
     logging.info("martinkarlssonio/python-kafka-eventbus :: Start listening to topic")
     listener.startThreads()
     
