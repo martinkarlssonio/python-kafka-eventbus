@@ -28,7 +28,7 @@ Execute `sudo python3 start.py` to start the Kafka containers and listener.py.
 ### Test
 
 Execute `python3 testProducer.py` to produce two new events.
-One of them has a configuration in "eventConfig/integration.json" with an action to start a Docker Container (hello-world).
+One of them has a configuration in "eventConfig/integration.json" with an action to start a Docker Container (hello-world), and the other one will just log out a message to the Terminal.
 
 <!-- CONTRIBUTING -->
 ## Contributing
