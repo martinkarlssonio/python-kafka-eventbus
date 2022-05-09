@@ -1,0 +1,22 @@
+{
+    "topic": "integration",
+    "details": "Topic triggered by an integration test.",
+    "events": {
+        "test": {
+            "eventName": "test",
+            "details": "Test integration",
+            "actions": [
+                {
+                    "actionId": "578addc4-27c5-42de-adc5-f5105e807f1c",
+                    "actionType": "startContainer",
+                    "actionTarget": "hello-world"
+                },
+                {
+                    "actionId": "ec8f3e56-69bd-4fc8-bbc1-5ab4c328252a",
+                    "actionType": "log",
+                    "actionTarget": ""
+                }
+            ]
+        }
+    }
+}

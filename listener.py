@@ -1,7 +1,8 @@
-#pip3 install kafka-python
 from kafka import KafkaConsumer
 from json import loads
+import json
 import threading
+import os
 
 import logging
 format = "%(asctime)s: %(message)s"
@@ -10,6 +11,10 @@ logging.basicConfig(format=format, level=logging.INFO,
 import configuration
 
 topics = configuration.kafkaTopics()
+
+def takeAction(actionCommand):
+    os.system(actionCommand)
+
 
 def listenToTopic(topic):
     logging.info("martinkarlssonio/python-kafka-eventbus :: Listening on topic '{}'.".format(topic))
@@ -24,7 +29,24 @@ def listenToTopic(topic):
     for message in consumer:
         message = message.value
         logging.info("martinkarlssonio/python-kafka-eventbus :: New event on topic {} : {}".format(topic,message))
+        eventName = message['eventName']
         #Take action here
+        try:
+            with open("eventConfig/{}.json".format(topic)) as topicConfigFile:
+                data = json.load(topicConfigFile)
+                events = data['events']
+                eventsActions = events[eventName]['actions']
+                actionThreads = list() #Create a list with action to be taken from the event
+                for action in eventsActions:
+                    actionType = action["actionType"]
+                    actionTarget = action["actionTarget"]
+                    actionCommand = configuration.getActionCommand(actionType,actionTarget)
+                    logging.info("martinkarlssonio/python-kafka-eventbus :: Execute actionCommand '{}' for eventName : {}".format(actionCommand,eventName))
+                    x = threading.Thread(target=takeAction, args=(actionCommand,)) #Execute the action in a seperate thread to not block this one
+                    x.start()
+        except Exception as e:
+            print(e)
+            logging.error("martinkarlssonio/python-kafka-eventbus :: No configuration found for topic {}".format(topic))
 
 def startThreads():
     threads = list()
@@ -38,4 +60,4 @@ def startThreads():
         thread.join()
 
 if __name__ == "__main__":
-    logging.info("martinkarlssonio/python-kafka-eventbus :: Listner started.")
+    logging.info("martinkarlssonio/python-kafka-eventbus :: Listener started.")
