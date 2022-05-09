@@ -1,3 +1,8 @@
+"""
+Start listener for each topic in seperate thread.
+When new event arrives it will take configured action in another thread.
+Configuration is fetched from 'configuration.py' and 'eventConfig/'.
+"""
 from kafka import KafkaConsumer
 from json import loads
 import json
