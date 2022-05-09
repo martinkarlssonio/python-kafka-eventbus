@@ -17,17 +17,17 @@ Purpose for this tutorial is to show how to build a de-coupled, eventdriven, mic
 ![Architecture overview][arch]
 
 ### Pre-requisite
-Ensure Python3 is installed.
-Ensure Docker is installed.
-Execute `pip3 install requirements.txt`
+- Ensure Python3 is installed.
+- Ensure Docker is installed.
+- Execute `pip3 install -r requirements.txt`
 
 ### Start
 
-Execute "sudo python3 start.py" to start the Kafka containers and listener.py.
+Execute `sudo python3 start.py` to start the Kafka containers and listener.py.
 
 ### Test
 
-Execute "python3 testProducer.py" to produce two new events.
+Execute `python3 testProducer.py` to produce two new events.
 One of them has a configuration in "eventConfig/integration.json" with an action to start a Docker Container (hello-world).
 
 <!-- CONTRIBUTING -->
